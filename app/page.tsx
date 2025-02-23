@@ -18,9 +18,17 @@ import {
   CircuitBoard,
   Phone,
   MapPin,
+  Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export default function Home() {
   const [message, setMessage] = useState("");
@@ -30,6 +38,7 @@ export default function Home() {
   ]);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("home");
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -219,6 +228,8 @@ export default function Home() {
               <CircuitBoard className="w-8 h-8 text-emerald-400" />
               <span className="text-xl logo-text">Agentia</span>
             </div>
+
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               <button
                 onClick={() => scrollToSection("home")}
@@ -271,12 +282,100 @@ export default function Home() {
                 Team
               </button>
             </div>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="bg-emerald-600 hover:bg-emerald-500"
-            >
-              Contact Us
-            </Button>
+
+            {/* Mobile Navigation */}
+            <div className="flex md:hidden items-center gap-4">
+              <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-gray-300">
+                    <Menu className="w-6 h-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent
+                  side="right"
+                  className="bg-black/95 border-emerald-500/20"
+                >
+                  <SheetHeader>
+                    <SheetTitle className="text-emerald-400">
+                      Navigation
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-4 mt-8">
+                    <button
+                      onClick={() => {
+                        scrollToSection("home");
+                        setIsSheetOpen(false);
+                      }}
+                      className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                        activeSection === "home"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : "text-gray-300 hover:bg-emerald-500/10"
+                      }`}
+                    >
+                      Home
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollToSection("features");
+                        setIsSheetOpen(false);
+                      }}
+                      className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                        activeSection === "features"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : "text-gray-300 hover:bg-emerald-500/10"
+                      }`}
+                    >
+                      Features
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollToSection("services");
+                        setIsSheetOpen(false);
+                      }}
+                      className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                        activeSection === "services"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : "text-gray-300 hover:bg-emerald-500/10"
+                      }`}
+                    >
+                      Services
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollToSection("pricing");
+                        setIsSheetOpen(false);
+                      }}
+                      className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                        activeSection === "pricing"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : "text-gray-300 hover:bg-emerald-500/10"
+                      }`}
+                    >
+                      Pricing
+                    </button>
+                    <button
+                      onClick={() => {
+                        scrollToSection("team");
+                        setIsSheetOpen(false);
+                      }}
+                      className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                        activeSection === "team"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : "text-gray-300 hover:bg-emerald-500/10"
+                      }`}
+                    >
+                      Team
+                    </button>
+                  </div>
+                </SheetContent>
+              </Sheet>
+              <Button
+                onClick={() => scrollToSection("contact")}
+                className="bg-emerald-600 hover:bg-emerald-500"
+              >
+                Contact
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
