@@ -281,6 +281,12 @@ export default function Home() {
               >
                 Team
               </button>
+              <Button
+                onClick={() => scrollToSection("contact")}
+                className="bg-emerald-600 hover:bg-emerald-500"
+              >
+                Contact
+              </Button>
             </div>
 
             {/* Mobile Navigation */}
@@ -366,15 +372,22 @@ export default function Home() {
                     >
                       Team
                     </button>
+                    <button
+                      onClick={() => {
+                        scrollToSection("contact");
+                        setIsSheetOpen(false);
+                      }}
+                      className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                        activeSection === "contact"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : "text-gray-300 hover:bg-emerald-500/10"
+                      }`}
+                    >
+                      Contact
+                    </button>
                   </div>
                 </SheetContent>
               </Sheet>
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="bg-emerald-600 hover:bg-emerald-500"
-              >
-                Contact
-              </Button>
             </div>
           </div>
         </div>
