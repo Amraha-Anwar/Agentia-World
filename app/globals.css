@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 30, 41, 59;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+}
+
+.starry-night {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  animation: drift 60s linear infinite;
+  background: radial-gradient(
+      2px 2px at 25% 25%,
+      rgba(16, 185, 129, 0.4) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      2px 2px at 50% 50%,
+      rgba(16, 185, 129, 0.35) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      3px 3px at 75% 75%,
+      rgba(16, 185, 129, 0.4) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      2.5px 2.5px at 25% 75%,
+      rgba(16, 185, 129, 0.35) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      2px 2px at 65% 35%,
+      rgba(16, 185, 129, 0.4) 0%,
+      transparent 100%
+    ),
+    black;
+  background-size: 200px 200px, 250px 250px, 150px 150px, 300px 300px,
+    175px 175px;
+}
+
+@keyframes drift {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.feature-card {
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+}
+
+.team-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.team-card:hover {
+  transform: translateY(-8px) rotateX(5deg);
+}
+
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(16, 185, 129, 0.1),
+    rgba(16, 185, 129, 0.05)
+  );
+  border-radius: inherit;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.team-card:hover::before {
+  opacity: 1;
+}
+
+.service-icon {
+  transition: all 0.4s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+.chat-interface {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+  transition: all 0.3s ease;
+}
+
+.chat-interface:hover {
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.2);
+}
+
+.assistant-message {
+  animation: messageSlideIn 0.3s ease-out forwards;
+}
+
+.user-message {
+  animation: messageSlideIn 0.3s ease-out forwards;
+  background: rgba(16, 185, 129, 0.2);
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(16, 185, 129, 0.3),
+    rgba(16, 185, 129, 0.1)
+  );
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #10b981;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.pricing-card {
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+}
+
+.logo-text {
+  background: linear-gradient(45deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.feature-card,
+.service-card,
+.pricing-card,
+.team-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.feature-card:hover,
+.service-card:hover,
+.pricing-card:hover,
+.team-card:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
